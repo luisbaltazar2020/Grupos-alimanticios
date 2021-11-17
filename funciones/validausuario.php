@@ -5,7 +5,7 @@ $usuario= $_REQUEST['usuario'];
 $pass= $_REQUEST['pass'];
 $band=0;
 
-$sql ="Select * from usuario where C    orreo = '$usuario' and password = '$passw'and status= 1 and eliminado =0;";
+$sql ="Select * from usuario where Correo = '$usuario' and password = '$pass'and status= 1 and eliminado =0;";
 $res = $con->query($sql);
 $num = $res->num_rows;
 

@@ -4,6 +4,9 @@
         
         <script src="JS/jquery-3.3.1.min.js"></script>
         <script>
+            function registro(){
+
+            }
             function validacion(){
                 var usuario=document.forma01.usuario.value;
                 var pass=document.forma01.pass.value;
@@ -13,13 +16,13 @@
                         type: 'post',
                         datatype:'text',
                         data:'usuario='+usuario+'&pass='+pass,
-                        success:function(ban){
-                            if(ban==0){
+                        success:function(band){
+                            if(band==0){
                                 $('#mensajenuevo').html('Datos incorrectos');
                                 setTimeout("$('#mensajenuevo').html('');",5000);
                             }
                             else{
-                                alert("datos correctos redireccionando");
+                                alert("datos correctos redireccionando");//aqui debe ir el redireccionamiento al menu que puso leonel
                             }
                         }
                     });
@@ -31,7 +34,16 @@
         </script>
     </head>
     <body>
-    <div class="titulo">Grupos Alimenticios, S.A de C.V</div>
+    <?php
+        error_reporting(0);
+        if(session_start()!=null||session_start()!=''){
+            $varsesion = $_SESSION['nombre'];
+        if($varsesion!=null||$varsesion!=''){
+            header("Location:menu.php");
+        }
+        }
+        ?>
+    <div class="titulo">Grupos Alimenticios, S.A de C.V</div><br>
     <div id="mensajenuevo" style="color:#F00;font-size:16px;"></div>
         <div class="login">
             <img src="https://definicion.de/wp-content/uploads/2019/06/perfildeusuario.jpg"/><br><br>
@@ -42,6 +54,8 @@
                 <input type="password" name="pass"></input><br>
             </form>
             <button type="submit" class="inicio" onclick="validacion();">Iniciar sesion</button>
+            <button type="submit" class="registro" onclick="registro();">Registrarse</button>
         </div>
+        
     </body>
 </html>

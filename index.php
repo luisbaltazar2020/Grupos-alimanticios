@@ -5,7 +5,7 @@
         <script src="JS/jquery-3.3.1.min.js"></script>
         <script>
             function registro(){
-
+                window.location.href="alta.php";
             }
             function validacion(){
                 var usuario=document.forma01.usuario.value;

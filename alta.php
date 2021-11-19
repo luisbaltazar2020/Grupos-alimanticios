@@ -1,15 +1,11 @@
-<?php
-    /*session_start();
-    $varsesion =$_SESSION['nombre'];
-    if($varsesion==null||$varsesion==''){
-        header("Location:menu.php");
-    }
-    else{
-        $name = $_SESSION['nombre'];
-    }*/
-?>
 <html>
     <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Login 01</title>
+    <link rel="stylesheet" href="./css/alta.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <script src="JS/jquery-3.3.1.min.js"></script>
         <script>
             function regresar(){
@@ -49,8 +45,9 @@
         </script>
     </head>
     <body>
-        <input type="button" value="Regresar al login" onclick="regresar();">
-        <form name="forma02">
+        
+        <form name="forma02" class="form-box animated fadeInUp">
+            <input type="button" value="Regresar al login" onclick="regresar();">
             <label for="nombre:">Nombre:</label><br>
             <input type="text" name="nombre" id="nombre"/><br>
             <label for="correo">Correo:</label><br>

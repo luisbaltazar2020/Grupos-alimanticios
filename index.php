@@ -22,7 +22,7 @@
                                 setTimeout("$('#mensajenuevo').html('');",5000);
                             }
                             else{
-                                alert("datos correctos redireccionando");//aqui debe ir el redireccionamiento al menu que puso leonel
+                                window.location.href="menu.php";//aqui debe ir el redireccionamiento al menu que puso leonel
                             }
                         }
                     });

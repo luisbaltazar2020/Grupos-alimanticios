@@ -1,0 +1,51 @@
+.fila{
+    width: 848px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.id{
+    float: left;
+    border: 1px solid black;
+    text-align:center;
+    height: 30px;
+    width:30px;
+    background-color:green
+}
+.nombre{
+    height: 30px;
+    width: 280px;
+    border: 1px solid black;
+    background-color:lightgreen;
+    float: left;
+    text-align: center;
+}
+.correo{
+    float: left;
+    border: 1px solid black;
+    text-align:center;
+    height: 30px;
+    width: 250px;
+}
+.tiempo{
+    float:left;
+    border: 1px solid black;
+    text-align:center;
+    height: 30px;
+    width: 94PX;
+}
+.hini{
+    float:left;
+    border: 1px solid black;
+    text-align:center;
+    height: 30px;
+    width: 94PX;
+}
+.botona{
+    float:left;
+    background-color: lightgreen;
+    width: 90px;
+    height: 30px;
+}

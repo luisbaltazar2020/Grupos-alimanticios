@@ -50,6 +50,15 @@
                 <input type="button" class='boton' value="Vendedores" onclick="vendedores();">
                 <input type="button" class='boton' value="Almacen" onclick="almacen();">
             </div><br><br>
+            
+            <div class='fila'>
+                <div class='id'>ID</div>
+                <div class='nombre'>Nombre</div>
+                <div class='correo'>Correo</div>
+                <div class='tiempo'>Tiempo venta</div>
+                <div class='hini'>Hora inicial</div>
+                <div class='botona'>Boton</div>
+            </div>
             <?php
                 require "funciones/conecta.php";
                 $con = conecta();
@@ -57,7 +66,7 @@
                 $sql = "SELECT * FROM usuario WHERE status=1 AND eliminado=0";
                 $res = $con->query($sql);
                 $cont =1;
-
+                
                 while($row=$res->fetch_array()){
                     $id = $row["id"];
                     $nombre = $row["nombre"];

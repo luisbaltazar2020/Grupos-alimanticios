@@ -8,14 +8,14 @@
             function almacen(){
                 window.location.href="./almacen.php";
             }
-            function menu(){
-                window.location.href="./Platillos.php";
-            }
             function opciones(){
                 window.location.href="./Opciones.php";
             }
             function vendedores(){
                 window.location.href="./vendedores.php";
+            }
+            function alta_platillo(){
+
             }
         </script>
     </head>
@@ -27,7 +27,8 @@
                 <input type="button" class='boton' value="Platillos/Menu" onclick="menu();">
                 <input type="button" class='boton' value="Vendedores" onclick="vendedores();">
                 <input type="button" class='boton' value="Almacen" onclick="almacen();">
-            </div>
-            debera mostrar un listado de los platillos que ofrece la empresa
+            </div><br>
+            <input type="button" value="Registrar Platillo" onclick="alta_platillo();"><br>
+            despues el listado
     </body>
 </html>

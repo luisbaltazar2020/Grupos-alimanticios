@@ -10,9 +10,6 @@
             function almacen(){
                 window.location.href="./almacen.php";
             }
-            function menu(){
-                window.location.href="./Platillos.php";
-            }
             function opciones(){
                 window.location.href="./Opciones.php";
             }
@@ -35,9 +32,8 @@
             <div class="titulo">Grupos Alimenticios, S.A</div>
                 <input type="button" class='boton' value="Cerrar sesion" onclick="cerrarsesion();">
                 <input type="button" class='boton' value="Opciones" onclick="opciones();">
-                <input type="button" class='boton' value="Platillos/Menu" onclick="menu();">
                 <input type="button" class='boton' value="Vendedores" onclick="vendedores();">
-                <input type="button" class='boton' value="Almacen" onclick="almacen();">
+                <input type="button" class='boton' value="Almacen" onclick="almacen();"> 
             </div><br>
             <input type="button" value="Registrar almacen" onclick="alta_almacen();"><br>
             <br><div class="fila">
@@ -64,6 +60,7 @@
                     echo"<div class='botones'>";
                     echo"<input onclick='agregar($id);' type='submit' value='Agregar' />";
                     echo"<input onclick='actualizar($id);' type='submit' value='Actualizar'/>";
+                    echo"<input onclick= 'platillos($id);' type='submit' value='Platillos'/>";
                     echo"</div>";
                     echo "</div>";
                     $cont++;

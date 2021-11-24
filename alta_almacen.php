@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="./css/menu.css">
         <link rel="stylesheet" href="./css/almacen.css">
         <script src="JS/jquery-3.3.1.min.js"></script>
+        
         <script>
              function cerrarsesion(){
                 window.location.href="./funciones/cerrar.php";
@@ -24,6 +25,7 @@
                 document.forma01.action='funciones/guardaralmacen.php';
                 document.forma01.submit();    
             }
+            
             </script>
     </head>
     <body>
@@ -35,6 +37,7 @@
                 <input type="button" class='boton' value="Vendedores" onclick="vendedores();">
                 <input type="button" class='boton' value="Almacen" onclick="almacen();">
             </div><br>
+            
         <form name="forma01">
             <label for="nombre">Dame el nombre del almacen</label><br>
             <input type="text" name="nombre" >

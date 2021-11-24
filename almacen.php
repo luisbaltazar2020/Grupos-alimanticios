@@ -23,7 +23,7 @@
                 window.location.href="./agregaringrediente.php?id="+id;
             }
             function actualizar(id){
-                window.location.href="lista_ingredientes.php";
+                window.location.href="lista_ingredientes.php?id="+id;
             }
             function alta_almacen(){
                 window.location.href="alta_almacen.php";

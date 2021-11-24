@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="./css/menu.css">
         <script src="JS/jquery-3.3.1.min.js"></script>
         <script>
-        function cerrarsesion(){
+            function cerrarsesion(){
                 window.location.href="./funciones/cerrar.php";
             }
             function almacen(){
@@ -18,21 +18,13 @@
             function vendedores(){
                 window.location.href="./vendedores.php";
             }
-            function validacion(id){
-                var nombre=document.forma01.nombre.value;
+            function validacion(id,ida){
                 var cantidad=document.forma01.cantidad.value;
                 var costo=document.forma01.costo.value;
-                if(nombre!=' '&&cantidad>0&&costo>0){
-                    document.forma01.method='post'
-                    document.forma01.action='funciones/guardarproducto.php?id='+id;
-                    document.forma01.submit();    
-                }
-                else{
-                    $('#mensaje').html('Error (Faltan campos por llenar)');
-                    setTimeout("$('#mensaje').html('');",5000);
-                }
+                window.location.href="./funciones/update_almacen.php?id="+id+'&idea='+ida+'&cantidad='+cantidad+'&costo='+costo;
             }
         </script>
+
     </head>
     <body>
     <div class="menu">
@@ -43,19 +35,26 @@
                 <input type="button" class='boton' value="Vendedores" onclick="vendedores();">
                 <input type="button" class='boton' value="Almacen" onclick="almacen();">
             </div><br>
-            <form name="forma01">
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" name="nombre"><br><div id="mensajenombre" style="color:#F00;font-size:16px;"></div>
-                <label for="cantidad">Cantidad(gramos):</label><br>
-                <input type="number" name="cantidad"><br>
-                <label for="costo">Costo:</label><br>
-                <input type="number" name="costo"><br>
-                <?php
-                $id=$_REQUEST['id'];
-                echo"<input type='button' value='Guardar' onclick='validacion($id);'>";
-                ?>
-                <div id="mensaje" style="color:#F00;font-size:16px;"></div>
-            </form>
-        
+        <form name="forma01">
+            <?php
+            $id=$_REQUEST['id'];
+            $idea=$_REQUEST['ida'];
+            require "funciones/conecta.php";
+            $con = conecta();
+            $sql = "SELECT * FROM ingredientes WHERE almacen_id=$id and id_ingrediente=$idea";
+            $res = $con->query($sql);
+            $row=$res->fetch_array();
+            $nombre=$row['nombre'];
+            echo"$nombre<br>";
+            $cantidad=$row['cantidad'];
+            $costo=$row['costo'];
+            echo "<label for='cantidad'>Cantidad(gramos):</label><br>";
+            echo "<input type='number' name='cantidad' placeholder='$cantidad' value='$cantidad'><br>";
+            echo "<label for='costo'>Costo:</label><br>";
+            echo "<input type='number' name='costo' placeholder='$costo' value='$costo'><br>";
+            echo"<input type='button' value='Guardar' onclick='validacion($id,$idea);'>";
+            ?>
+            
+        </form>
     </body>
 </html>

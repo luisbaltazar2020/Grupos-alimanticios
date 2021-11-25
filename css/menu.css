@@ -16,4 +16,14 @@
     font-size: 25px;
     color: rgb(255, 255, 255);
 }
+.mensaje{
+    font-family: fantasy;
+}
+.menucompras{
+    height: 30px;
+    background-color: red;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
 

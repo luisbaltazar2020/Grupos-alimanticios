@@ -11,7 +11,5 @@
 
     $sql = "INSERT INTO `ingredientes` (`almacen_id`, `nombre`, `cantidad`, `costo`) VALUES ('$id','$nombre', '$cantidad', '$costo')";
     $res = $con->query($sql);
-
-
-
+    header("Location:../menu.php");
 ?>

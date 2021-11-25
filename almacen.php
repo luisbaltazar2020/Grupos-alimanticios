@@ -25,6 +25,9 @@
             function alta_almacen(){
                 window.location.href="alta_almacen.php";
             }
+            function platillos(id){
+                window.location.href="./Platillos.php?id="+id;
+            }
         </script>
     </head>
     <body>
@@ -36,7 +39,8 @@
                 <input type="button" class='boton' value="Almacen" onclick="almacen();"> 
             </div><br>
             <input type="button" value="Registrar almacen" onclick="alta_almacen();"><br>
-            <br><div class="fila">
+            <br>
+            <div class="fila">
                 <div class='id'>ID</div>
                 <div class='nombre'>Nombre</div>
                 <div class='botones'>Boton</div>
@@ -60,9 +64,9 @@
                     echo"<div class='botones'>";
                     echo"<input onclick='agregar($id);' type='submit' value='Agregar' />";
                     echo"<input onclick='actualizar($id);' type='submit' value='Actualizar'/>";
-                    echo"<input onclick= 'platillos($id);' type='submit' value='Platillos'/>";
+                    echo"<input onclick='platillos($id);' type='submit' value='Platillos'/>";
                     echo"</div>";
-                    echo "</div>";
+                    echo"</div>";
                     $cont++;
                 }
 

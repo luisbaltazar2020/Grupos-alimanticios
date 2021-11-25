@@ -13,4 +13,4 @@
     $sql = "UPDATE `usuario` SET`Correo`='$correo',`tiempo_venta`= $tiempo,`h_inicial`=$hini,`status`= $baja WHERE id=$id";
     $res = $con->query($sql);
     echo "1";
-?>
+?> 

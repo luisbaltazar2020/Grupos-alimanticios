@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-11-2021 a las 23:49:00
+-- Tiempo de generación: 26-11-2021 a las 00:23:23
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.3.21
 
@@ -29,18 +29,24 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE IF NOT EXISTS `almacen` (
-  `usuario_id` int(11) NOT NULL,
   `Id_almacen` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `nombre` varchar(64) COLLATE utf16_spanish2_ci NOT NULL,
   PRIMARY KEY (`Id_almacen`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf16 COLLATE=utf16_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf16 COLLATE=utf16_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `almacen`
 --
 
-INSERT INTO `almacen` (`usuario_id`, `Id_almacen`) VALUES
-(1, 1);
+INSERT INTO `almacen` (`Id_almacen`, `usuario_id`, `nombre`) VALUES
+(5, 1, 'tacos'),
+(6, 1, 'tortas'),
+(7, 1, 'tamales'),
+(8, 1, 'desayunos'),
+(9, 1, 'tortas'),
+(10, 1, 'Italiana');
 
 -- --------------------------------------------------------
 
@@ -57,14 +63,16 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
   `costo` int(11) NOT NULL,
   PRIMARY KEY (`id_ingrediente`),
   KEY `almacen_id` (`almacen_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `ingredientes`
 --
 
 INSERT INTO `ingredientes` (`almacen_id`, `id_ingrediente`, `nombre`, `cantidad`, `costo`) VALUES
-(1, 1, 'brocoli', 3, 12);
+(5, 19, 'tortilla', 2000, 15),
+(5, 26, 'suadero', 50, 100),
+(6, 28, 'cebolla', 10, 5);
 
 -- --------------------------------------------------------
 
@@ -76,17 +84,21 @@ DROP TABLE IF EXISTS `platillo`;
 CREATE TABLE IF NOT EXISTS `platillo` (
   `Id_platillo` int(11) NOT NULL AUTO_INCREMENT,
   `almacen_id` int(11) NOT NULL,
+  `nombre` varchar(32) COLLATE ucs2_spanish2_ci NOT NULL,
+  `ingrediente_id` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`Id_platillo`),
   KEY `almacen_id` (`almacen_id`),
-  KEY `almacen_id_2` (`almacen_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ucs2 COLLATE=ucs2_spanish2_ci;
+  KEY `ingrediente_id` (`ingrediente_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ucs2 COLLATE=ucs2_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `platillo`
 --
 
-INSERT INTO `platillo` (`Id_platillo`, `almacen_id`) VALUES
-(1, 1);
+INSERT INTO `platillo` (`Id_platillo`, `almacen_id`, `nombre`, `ingrediente_id`, `cantidad`) VALUES
+(1, 5, 'tacos de suadero', 26, 20),
+(2, 5, 'tacos de suadero', 19, 10);
 
 -- --------------------------------------------------------
 
@@ -105,14 +117,16 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `status` int(11) NOT NULL DEFAULT '1',
   `eliminado` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `Correo`, `password`, `nombre`, `tiempo_venta`, `h_inicial`, `status`, `eliminado`) VALUES
-(1, 'l.b.g.l_92@hotmail.com', 'hola', 'Luis Baltazar', 8, 2, 1, 0);
+(1, 'l.b.g.l_92@hotmail.com', 'hola', 'Luis Baltazar', 3, 5, 1, 0),
+(2, 'EO@gmail.com', 'asasa', 'Erick', 5, 2, 1, 0),
+(4, 'juan@udg.mx', 'hola', 'Juan Baltazar', 6, 8, 1, 0);
 
 --
 -- Restricciones para tablas volcadas
@@ -122,19 +136,20 @@ INSERT INTO `usuario` (`id`, `Correo`, `password`, `nombre`, `tiempo_venta`, `h_
 -- Filtros para la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  ADD CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `fk_usuario_almacen` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  ADD CONSTRAINT `ingredientes_ibfk_1` FOREIGN KEY (`almacen_id`) REFERENCES `almacen` (`Id_almacen`);
+  ADD CONSTRAINT `fk_almacen_ingredientes` FOREIGN KEY (`almacen_id`) REFERENCES `almacen` (`Id_almacen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `platillo`
 --
 ALTER TABLE `platillo`
-  ADD CONSTRAINT `platillo_ibfk_1` FOREIGN KEY (`almacen_id`) REFERENCES `almacen` (`Id_almacen`);
+  ADD CONSTRAINT `fk_platillo_ingredientes` FOREIGN KEY (`almacen_id`) REFERENCES `almacen` (`Id_almacen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `platillo_ibfk_1` FOREIGN KEY (`ingrediente_id`) REFERENCES `ingredientes` (`id_ingrediente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
